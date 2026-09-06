@@ -1382,7 +1382,210 @@ input[type="radio"]{
     }
 
 }
+/* ===== QUOTE SECTION ===== */
+.section-quote {
+  position: relative;
+  width: 100%;
+}
 
+.quote-frame-bg {
+  display: none; /* default: mobile tidak pakai frame video besar */
+}
+
+.quote-content {
+  position: relative;
+  z-index: 2;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* --- MOBILE: layout bersih dengan ornamen kecil --- */
+@media (max-width: 1023px) {
+  .section-quote {
+    width: 100%;
+    aspect-ratio: 1728 / 932; /* sesuaikan rasio asli video kamu */
+    overflow: hidden;
+  }
+
+  .quote-frame-bg {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* full-width tanpa gepeng, sesuai request full-width sebelumnya */
+    pointer-events: none;
+  }
+
+  .quote-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 14% 18% 24%;
+  }
+}
+
+/* --- DESKTOP: pakai video frame full width --- */
+@media (min-width: 1024px) {
+  .section-quote {
+    width: 100%;
+    aspect-ratio: 1728 / 932; /* sesuaikan rasio asli video kamu */
+    overflow: hidden;
+  }
+
+  .quote-frame-bg {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* full-width tanpa gepeng, sesuai request full-width sebelumnya */
+    pointer-events: none;
+  }
+
+  .quote-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 14% 18% 24%;
+  }
+
+  .quote-mobile-ornament {
+    display: none;
+  }
+}
+
+.section-save-the-date {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  aspect-ratio: 1080 / 1920;
+  overflow: hidden;
+}
+
+.save-the-date-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+.section-countdown {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  padding: 0 !important;
+    margin-bottom: 80px;
+
+}
+
+/* VIDEO */
+.countdown-video {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  display: block;
+
+  z-index: 1;
+}
+
+/* COUNTDOWN */
+.countdown-overlay {
+  position: absolute;
+
+  left: 50%;
+  top: 58%;
+
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 10px;
+
+  z-index: 2;
+}
+
+/* KOTAK */
+.countdown-overlay .countdown-box {
+  background: var(--card-bg);
+
+  border: 1px solid var(--border-color);
+
+  border-radius: 12px;
+
+  padding: 1rem 0.5rem;
+
+  min-width: 70px;
+
+  text-align: center;
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* ANGKA */
+.countdown-overlay .countdown-box span:first-child {
+  font-size: 1.8rem;
+  color: var(--accent-color);
+}
+
+/* LABEL */
+.countdown-overlay .countdown-box span:last-child {
+  display: block;
+
+  margin-top: 4px;
+
+  font-size: 0.7rem;
+
+  color: var(--secondary-color);
+
+  letter-spacing: 0.15em;
+}
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .countdown-overlay {
+    top: 58%;
+    gap: 5px;
+  }
+
+  .countdown-overlay .countdown-box {
+    min-width: 58px;
+    padding: 0.7rem 0.35rem;
+  }
+
+  .countdown-overlay .countdown-box span:first-child {
+    font-size: 1.3rem;
+  }
+
+  .countdown-overlay .countdown-box span:last-child {
+    font-size: 0.5rem;
+  }
+
+}
   </style>
 
   <style>body { box-sizing: border-box; }</style>
@@ -1603,16 +1806,26 @@ style="min-height:100svh;"> -->
 <!-- MAIN CONTENT -->
    <div id="mainContent">
     <!-- QUOTE SECTION -->
-    <section class="section-quote py-20 px-6 text-center fade-in intro-animate">
-     <div style="max-width:600px;margin:0 auto;">
-      <!-- <svg class="mx-auto mb-6" width="40" height="40" viewbox="0 0 40 40" style="color:var(--accent-color);opacity:0.5;"><path d="M20 5 L23 15 L33 15 L25 22 L28 33 L20 26 L12 33 L15 22 L7 15 L17 15Z" fill="currentColor" />
-      </svg> -->
-      <p id="quoteText" class="font-body italic" style="font-size:1.2rem;line-height:1.9;color:var(--secondary-color);">"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan-pasangan dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya."</p>
-      <p class="font-body mt-4" style="font-size:0.85rem;color:var(--accent-color);letter-spacing:0.15em;">— QS. Ar-Rum: 21</p>
-     </div>
+    <section class="section-quote fade-in intro-animate">
 
-     
-    </section>
+  <video class="quote-frame-bg" autoplay muted playsinline preload="auto">
+    <source src="assets/section-quotes.mp4" type="video/mp4">
+  </video>
+
+  <div class="quote-content">
+
+    <!-- <div class="quote-mobile-ornament">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 30 Q25 15 45 30 T85 30" stroke="currentColor" stroke-width="1.2" fill="none"/>
+        <path d="M5 45 Q25 30 45 45 T85 45" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.7"/>
+      </svg>
+    </div> -->
+
+    <!-- Kalau teks quote sudah ikut ter-animate/embed di video, hapus blok <p id="quoteText"> ini di bawah supaya gak duplikat -->
+
+  </div>
+
+</section>
 
 <section class="section-intro fade-in py-16 px-6 text-center intro-animate">
 
@@ -1648,7 +1861,7 @@ style="min-height:100svh;"> -->
   <h2 id="groomName">Bagus Rivaldi</h2>
 
   <p class="parents-label">Putra dari</p>
-  <p class="parents" id="groomParents">Bapak Moch. Ali &amp; Ibu Kus</p>
+  <p class="parents" id="groomParents">Bapak Moch. Ali &amp; Ibu Kusnia</p>
 </div>
 
   </div>
@@ -1687,58 +1900,70 @@ style="min-height:100svh;"> -->
        <p class="font-body mt-3" style="color:var(--secondary-color);font-size:0.95rem;">Putri dari<br><span id="brideParents" style="color:var(--text-color);">Bapak Lukman Sidik (Alm) &amp; Ibu Puji Suswati</span></p> -->
       </div>
      </div>
-    </section><!-- EVENT DETAILS -->
-    <section class="section-countdown py-16 px-6 fade-in">
-     <div style="max-width:600px;margin:0 auto;text-align:center;">
-      <p class="font-body uppercase tracking-[0.3em] mb-1" style="font-size:0.75rem;color:var(--secondary-color);">Save The Date</p>
-      <div class="golden-divider my-6"></div><!-- Countdown -->
-      <div id="countdown" class="flex justify-center gap-4 mb-12">
-       <div class="countdown-box">
-        <span id="cdDays" class="font-heading block" style="font-size:1.8rem;color:var(--accent-color);">0</span> <span class="font-body" style="font-size:0.7rem;color:var(--secondary-color);letter-spacing:0.15em;">HARI</span>
-       </div>
-       <div class="countdown-box">
-        <span id="cdHours" class="font-heading block" style="font-size:1.8rem;color:var(--accent-color);">0</span> <span class="font-body" style="font-size:0.7rem;color:var(--secondary-color);letter-spacing:0.15em;">JAM</span>
-       </div>
-       <div class="countdown-box">
-        <span id="cdMins" class="font-heading block" style="font-size:1.8rem;color:var(--accent-color);">0</span> <span class="font-body" style="font-size:0.7rem;color:var(--secondary-color);letter-spacing:0.15em;">MENIT</span>
-       </div>
-       <div class="countdown-box">
-        <span id="cdSecs" class="font-heading block" style="font-size:1.8rem;color:var(--accent-color);">0</span> <span class="font-body" style="font-size:0.7rem;color:var(--secondary-color);letter-spacing:0.15em;">DETIK</span>
-       </div>
-      </div>
+    </section>
+    
+    <!-- EVENT DETAILS -->
+    <section class="section-countdown fade-in">
 
-      <!-- <div class="gunungan-mini">
-  <img src="/assets/vecteezy_silhouette-of-gunungan-wayang_6989557-removebg-preview.png" class="gunungan" />
-</div> -->
-      
-      <!-- Akad -->
-      <div class="section-card mb-6">
-       <div class="flex items-center justify-center gap-2 mb-4">
-        <i data-lucide="book-open" style="width:18px;height:18px;color:var(--accent-color);"></i>
-        <p class="font-heading" style="font-size:1.2rem;color:var(--accent-color);">Akad Nikah</p>
-       </div>
-       <p id="akadDate" class="font-body" style="font-size:1.05rem;color:var(--accent-color);">Minggu, 11 Oktober 2026</p>
-       <p id="akadTime" class="font-body mt-1" style="color:var(--accent-color);">07:00 WIB</p>
-      </div><!-- Resepsi -->
-      <div class="section-card mb-8">
-       <div class="flex items-center justify-center gap-2 mb-4">
-        <i data-lucide="heart" style="width:18px;height:18px;color:var(--accent-color);"></i>
-        <p class="font-heading" style="font-size:1.2rem;color:var(--accent-color);">Resepsi</p>
-       </div>
-       <p id="resepsiDate" class="font-body" style="font-size:1.05rem;color:var(--accent-color);">Minggu, 11 Oktober 2026</p>
-       <p id="resepsiTime" class="font-body mt-1" style="color:var(--accent-color);">11:00 - 13:00 WIB</p>
-      </div><!-- Venue -->
-      <div class="section-card">
-       <div class="flex items-center justify-center gap-2 mb-4">
-        <i data-lucide="map-pin" style="width:18px;height:18px;color:var(--accent-color);"></i>
-        <p class="font-heading" style="font-size:1.2rem;color:var(--accent-color);">Lokasi</p>
-       </div>
-       <p id="venueName" class="font-body" style="font-size:1.1rem;color:var(--accent-color);">Gedung Aula Yonzipur Matraman</p>
-       <p id="venueAddress" class="font-body mt-1" style="color:var(--accent-color);font-size:0.95rem;">Jl. Kesatrian IV, RT. 024/RW. 003, Kel, Kb. Manggis, Kec. Matraman, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13150</p>
-      </div>
-     </div>
-     
-    </section><!-- GALLERY SECTION -->
+  <!-- VIDEO BACKGROUND -->
+  <video
+    class="countdown-video"
+    autoplay muted playsinline preload="auto"
+  >
+    <source src="assets/countdown.mp4" type="video/mp4">
+  </video>
+
+  <!-- COUNTDOWN DI TENGAH VIDEO -->
+  <div id="countdown" class="countdown-overlay">
+
+    <div class="countdown-box">
+      <span id="cdDays" class="font-heading block">
+        0
+      </span>
+      <span class="font-body">
+        HARI
+      </span>
+    </div>
+
+    <div class="countdown-box">
+      <span id="cdHours" class="font-heading block">
+        0
+      </span>
+      <span class="font-body">
+        JAM
+      </span>
+    </div>
+
+    <div class="countdown-box">
+      <span id="cdMins" class="font-heading block">
+        0
+      </span>
+      <span class="font-body">
+        MENIT
+      </span>
+    </div>
+
+    <div class="countdown-box">
+      <span id="cdSecs" class="font-heading block">
+        0
+      </span>
+      <span class="font-body">
+        DETIK
+      </span>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- Video menggantikan Akad Nikah / Resepsi / Lokasi -->
+<section class="section-save-the-date fade-in">
+  <video class="save-the-date-video" autoplay muted playsinline preload="auto">
+    <source src="assets/save-the-date.mp4" type="video/mp4">
+  </video>
+</section>
+    
+    <!-- GALLERY SECTION -->
     <section class="py-16 px-6 fade-in">
      <div style="max-width:700px;margin:0 auto;">
       <p class="font-body uppercase tracking-[0.3em] mb-2 text-center" style="font-size:0.75rem;color:var(--secondary-color);">Momen Berharga</p>
@@ -1812,7 +2037,7 @@ style="min-height:100svh;"> -->
      </div>
 
       </section><!-- WISHES GALLERY SECTION -->
-    <section class="py-16 px-6 fade-in" style="background:linear-gradient(180deg,rgba(195,155,211,0.05) 0%,rgba(195,155,211,0.02) 100%);">
+    <section class="py-16 px-6 fade-in" >
      <div style="max-width:800px;margin:0 auto;">
       <p class="font-body uppercase tracking-[0.3em] mb-2 text-center" style="font-size:0.75rem;color:var(--secondary-color);">Galeri Ucapan</p>
       <div class="golden-divider mb-8"></div>
@@ -2596,7 +2821,27 @@ function toggleAudio() {
   });
 
 async function sendRSVP() {
+  const name = document.getElementById("rsvpName").value.trim();
+    const attendance = document.querySelector('input[name="attendance"]:checked');
 
+    if (name === "") {
+        alert("Mohon isi nama terlebih dahulu.");
+        document.getElementById("rsvpName").focus();
+        return;
+    }
+
+    if (!attendance) {
+        alert("Mohon pilih konfirmasi kehadiran.");
+        return;
+    }
+
+    // lanjutkan proses simpan RSVP
+    const status = attendance.value;
+
+    console.log({
+        name: name,
+        attendance: status
+    });
     const button = document.querySelector(".rsvp-btn");
 
     button.disabled = true;
