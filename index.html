@@ -9,10 +9,30 @@
   <script src="/_sdk/element_sdk.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;family=Great+Vibes&amp;display=swap" rel="stylesheet">
   <style>
-    html, body { height: 100%; margin: 0; overflow-x: hidden;}
-    body {
-  position: relative;
-  overflow-x: hidden;
+   html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: transparent;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background-image: url("cover-java13--scaled.jpg");
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: no-repeat;
+
+    z-index: -1;
+    pointer-events: none;
 }
     * { box-sizing: border-box; }
 
@@ -816,13 +836,36 @@
 .gunungan-side.left{ left: 10px; }
 .gunungan-side.right{ right: 10px; }
 
-#mainContent{
-  display:none;
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100dvh;
+
+    background-image: url("cover-mobile.jpg");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+
+    z-index: -1;
+    pointer-events: none;
 }
 
-#mainContent.active{
-  display:block;
+#mainContent {
+    width: 100%;
+    min-height: 100vh;
+    background: transparent;
 }
+
+#mainContent {
+    width: 100%;
+    min-height: 100vh;
+    background: transparent;
+}
+
+
 
 .cover-section {
   height: 100vh;
@@ -1494,6 +1537,10 @@ input[type="radio"]{
 
 /* VIDEO */
 .countdown-video {
+     padding-left: 20px !important;
+    padding-right: 20px !important;
+        border-radius: 30px 30px 0 0;
+
   position: absolute;
   inset: 0;
 
@@ -1803,14 +1850,23 @@ style="min-height:100svh;"> -->
 
 </section>
 
+<section>
+
+
+
+
 <!-- MAIN CONTENT -->
    <div id="mainContent">
+    <!-- Background -->
+
     <!-- QUOTE SECTION -->
     <section class="section-quote fade-in intro-animate">
 
   <video class="quote-frame-bg" autoplay muted playsinline preload="auto">
     <source src="assets/section-quotes.mp4" type="video/mp4">
   </video>
+
+   
 
   <div class="quote-content">
 
@@ -1906,12 +1962,16 @@ style="min-height:100svh;"> -->
     <section class="section-countdown fade-in">
 
   <!-- VIDEO BACKGROUND -->
-  <video
+  <!-- <video
     class="countdown-video"
     autoplay muted playsinline preload="auto"
   >
     <source src="assets/countdown.mp4" type="video/mp4">
-  </video>
+  </video> -->
+    <img
+    src="/assets/img-countdown.png"
+    alt=""
+  >
 
   <!-- COUNTDOWN DI TENGAH VIDEO -->
   <div id="countdown" class="countdown-overlay">
@@ -1958,9 +2018,14 @@ style="min-height:100svh;"> -->
 
 <!-- Video menggantikan Akad Nikah / Resepsi / Lokasi -->
 <section class="section-save-the-date fade-in">
-  <video class="save-the-date-video" autoplay muted playsinline preload="auto">
+  <!-- <video class="save-the-date-video" autoplay muted playsinline preload="auto">
     <source src="assets/save-the-date.mp4" type="video/mp4">
-  </video>
+  </video> -->
+
+  <img
+    src="/assets/date.png"
+    alt=""
+  >
 </section>
     
     <!-- GALLERY SECTION -->
@@ -2256,6 +2321,8 @@ style="min-height:100svh;"> -->
    <i data-lucide="music"></i>
   </div>
   <audio id="bgAudio" preload="auto"></audio>
+
+  </section>
   <script>
   const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbwbFGZlSwEuxl_UPyq6YkV5VgV1wcXg8n2TZJQTiPTt9oW2qX8mv2Lp4dVYXKFF1jMJ/exec";
 let allWishes = [];
