@@ -21,24 +21,20 @@ body {
     background: transparent;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-
-    background-image: url("cover-java13--scaled.jpg");
-    background-size: 100% auto;
-    background-position: top center;
-    background-repeat: no-repeat;
-
-    z-index: -1;
-    pointer-events: none;
-}
     * { box-sizing: border-box; }
 
-    .font-script { font-family: 'Great Vibes', cursive; }
-    .font-heading { font-family: 'Playfair Display', serif; }
-    .font-body { font-family: 'Cormorant Garamond', serif; }
+    .font-script { font-family: 'Great Vibes', cursive; -webkit-text-stroke: 0.1px #000;}
+    .font-heading { font-family: 'Playfair Display', serif; -webkit-text-stroke: 0.1px #000;}
+    .font-body { font-family: 'Cormorant Garamond', serif; -webkit-text-stroke: 0.1px #000;}
+
+    .text-outline {
+  text-shadow:
+    -1px -1px 0 #fff7f0,
+     1px -1px 0 #fff7f0,
+    -1px  1px 0 #fff7f0,
+     1px  1px 0 #fff7f0,
+     0 0 8px rgba(255,247,240,0.8); /* glow tipis, boleh dihapus */
+}
 
     .audio-control {
       position: fixed;
@@ -139,6 +135,17 @@ body::before {
       backdrop-filter: blur(14px);
 -webkit-backdrop-filter: blur(14px);
     }
+
+    .section-box-blur {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2.5rem 1rem;
+  backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+background: rgba(255, 255, 255, 0.12);
+  text-align: center;
+}
 
     .countdown-box {
       background: var(--card-bg);
@@ -836,34 +843,33 @@ body::before {
 .gunungan-side.left{ left: 10px; }
 .gunungan-side.right{ right: 10px; }
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-
-    width: 100%;
-    height: 100dvh;
-
-    background-image: url("cover-mobile.jpg");
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-
-    z-index: -1;
-    pointer-events: none;
-}
 
 #mainContent {
-    width: 100%;
-    min-height: 100vh;
-    background: transparent;
+  position: relative;
+  isolation: isolate;          /* supaya z-index:-1 tidak keluar dari section ini */
+  width: 100%;
+  min-height: 100%;
+  background: transparent;
 }
 
-#mainContent {
-    width: 100%;
-    min-height: 100vh;
-    background: transparent;
+#mainContent::before {
+  content: "";
+  display: block;
+  position: sticky;
+  top: 0;
+
+  width: 100%;
+  height: 100vh;               /* fallback */
+  height: 100dvh;              /* tinggi asli layar HP (address bar ikut dihitung) */
+  margin-bottom: -100vh;       /* supaya tidak menambah tinggi konten */
+  margin-bottom: -100dvh;
+
+  background: url("cover-java13--scaled.jpg") center top / cover no-repeat;
+
+  z-index: -1;
+  pointer-events: none;
 }
+
 
 
 
@@ -1862,9 +1868,13 @@ style="min-height:100svh;"> -->
     <!-- QUOTE SECTION -->
     <section class="section-quote fade-in intro-animate">
 
-  <video class="quote-frame-bg" autoplay muted playsinline preload="auto">
+  <!-- <video class="quote-frame-bg" autoplay muted playsinline preload="auto">
     <source src="assets/section-quotes.mp4" type="video/mp4">
-  </video>
+  </video> -->
+  <img
+    src="assets/quotes-arrumm.png"
+    alt=""
+  >
 
    
 
@@ -1886,22 +1896,30 @@ style="min-height:100svh;"> -->
 <section class="section-intro fade-in py-16 px-6 text-center intro-animate">
 
   <div style="max-width:600px;margin:0 auto;">
-
-    <p class="font-heading" style="font-size:1.1rem;color:var(--accent-color);line-height:1.8;">
-      Assalamu'alaikum<br>
+    <div class="section-box-blur">
+        <div class="flex gap-4">
+    <p class="font-heading text-outline" style="font-size:1.1rem;color:var(--accent-color);line-height:1.8;">
+      Assalamu'alaikum
       Warahmatullahi Wabarakatuh
     </p>
+    </div>
+    </div>
 
     <div class="golden-divider my-6"></div>
-
-    <p class="font-body" style="font-size:1rem;line-height:1.9;color:var(--secondary-color);">
+    <div class="section-box-blur">
+        <div class="flex gap-4">
+    <p class="font-body text-outline" style="font-size:1rem;line-height:1.9;color:var(--secondary-color);">
       Dengan memohon Rahmat dan Ridho Allah Subhanahu Wa Ta’ala kami bermaksud untuk mengundang
       Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami:
     </p>
-
+    </div>
+    </div>
+    
   </div>
 
 </section>
+
+<!-- ####### Pengantin ###### -->
     <section class="py-16 px-6 fade-in">
      <div style="max-width:600px;margin:0 auto;text-align:center;">
       <!-- <p class="font-body uppercase tracking-[0.3em] mb-2" style="font-size:0.75rem;color:var(--secondary-color);">Dengan memohon rahmat Allah SWT</p> -->
@@ -1955,7 +1973,7 @@ style="min-height:100svh;"> -->
        <h2 id="brideName" class="font-heading" style="font-size:2rem;color:var(--accent-color);">Diah Lestaningsih</h2>
        <p class="font-body mt-3" style="color:var(--secondary-color);font-size:0.95rem;">Putri dari<br><span id="brideParents" style="color:var(--text-color);">Bapak Lukman Sidik (Alm) &amp; Ibu Puji Suswati</span></p> -->
       </div>
-     </div>
+    
     </section>
     
     <!-- EVENT DETAILS -->
@@ -2303,10 +2321,19 @@ style="min-height:100svh;"> -->
      <div style="max-width:500px;margin:0 auto;">
       <svg class="mx-auto mb-6" width="50" height="50" viewbox="0 0 50 50" style="color:var(--accent-color);opacity:0.4;"><path d="M25 42 C15 35 5 28 5 18 C5 11 10 5 17 5 C21 5 24 7 25 10 C26 7 29 5 33 5 C40 5 45 11 45 18 C45 28 35 35 25 42Z" fill="currentColor" />
       </svg>
+=    <div class="section-box-blur">
+        <div class="flex gap-4">
       <p class="font-body" style="font-size:1.05rem;line-height:1.8;color:var(--secondary-color);">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kedua mempelai.</p>
+      </div>
+      </div>
       <div class="golden-divider my-12"></div>
+      <div style="max-width:600px;margin:0 auto;">
+    <div class="section-box-blur">
+        <div class="flex flex-col gap-4 text-center">
       <p class="font-body" style="font-size:0.95rem;color:var(--secondary-color);">Atas kehadiran dan doa restunya, kami ucapkan terima kasih.</p>
       <p class="font-heading mt-6" style="font-size:1.1rem;color:var(--accent-color);">Wassalamualaikum Wr. Wb.</p>
+      </div>
+      </div>
       <div class="mt-10">
        <p id="closingNames" class="font-script" style="font-size:2rem;color:var(--accent-color);">Bagus &amp; Diah</p>
       </div>
